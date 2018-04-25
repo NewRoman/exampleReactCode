@@ -1,0 +1,120 @@
+@charset 'utf-8';
+ 
+html,
+body {
+    font-weight: 400;
+    margin: 0 !important;
+    min-height: 100%;
+    padding: 0 !important; 
+    width: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+html {
+    position: relative;
+}
+
+// для Edge убрать возможность удаление набранного текста по клику на иконку крестика
+input::-ms-clear {
+    display: none;
+}
+
+input[type=password]::-ms-reveal {
+    display: none;
+ }
+
+.fade-in-class {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+label {
+    display: inline-block;
+}
+
+// максимальная и минимальная ширина контейнера с контентом сайта
+.container-fluid {
+    max-width: 1920px;
+    min-width: 305px; 
+}
+
+.wrap-content .overlay-localization {
+    background: rgba(0,0,0,.5);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 58;
+}
+
+.set-crousel-list-count {
+    display: none;
+    position: absolute;
+    z-index: 2;
+
+    @media screen and (min-width: 651px) {
+        z-index: 3;
+    }
+
+    @media screen and (min-width: 1025px) {
+        z-index: 4;
+    }
+}
+
+[class^="sprite-"] {
+    display: inline-block;
+}
+
+// новые синие оттенки для ссылок
+a:visited {
+    color: @link_color_visited;
+}
+
+a:active {
+    color: @link_color_active;
+}
+
+// @todo удалить эти стили и вместо них использовать бутстрапавский класс unstyled-list
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.padding-text-content {
+    padding: 0 14px;
+
+    @media screen and (max-width: 767px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+    display: inline-block;
+    position: relative;
+    margin: 13px 0;
+}
+
+h2,
+.h2 {
+    @media screen and (max-width: 767px) {
+        font-size: 18px;
+    }
+}
+
+h3,
+.h3 {
+    font-weight: 400;
+    font-size: @font-size-h3;
+}
+

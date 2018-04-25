@@ -1,0 +1,251 @@
+// миксин для вертикального выравнивания по центру
+.centeredVertical {
+    .translate(@x: 0; @y: -50%);
+
+    position: absolute; 
+    top: 50%;
+}
+//
+// Alerts specified customize
+// --------------------------------------------------  
+
+
+// Base styles
+// -------------------------
+
+.alert {
+	padding: @alert-padding;
+	margin-bottom: 0;
+	border: none;
+	border-radius: @alert-border-radius;
+
+	font-size: 16px;
+
+	// Headings for larger alerts
+	h4 {
+		margin-top: 0;
+		// Specified for the h4 to prevent conflicts of changing @headings-color
+		color: inherit;
+	}
+
+	// Provide class for links that match alerts
+	.alert-link {
+		font-weight: @alert-link-font-weight;
+	}
+
+	// Improve alignment and spacing of inner content
+	> p,
+	> ul {
+		margin-bottom: 0;
+	}
+
+	> p + p {
+		margin-top: 5px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.alert {
+		font-size: 13px;
+	}
+}
+
+// Dismissible alerts
+//
+// Expand the right padding and account for the close button's positioning.
+
+.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
+	padding-right: (@alert-padding + 20);
+	
+	.warning-ico-bg {
+		display: inline-block;
+		height: 19px;
+		margin-right: 20px;
+		width: 22px;
+		vertical-align: text-bottom;
+
+		background: url(../img/service-warning.png) no-repeat center center;
+	}
+
+	// зафиксировать панель с сообщением о регламентных работах на сайте
+	&.show-alert-update.fade.in {
+		position: fixed;
+		top: 0;
+		z-index: 999;
+
+		height: 80px;
+		width: 100%;
+		
+		// подвинуть ниже фиксированое верхнее меню чтобы уведомление о работах не накладывалось сверху меню
+		+ header {
+			top: 80px;
+		}
+		+ header + .wrap-filters-block {
+			margin-top: 122px;
+		}
+	}
+	
+	/**
+	/* для некоторых локалей пришлось менять высоту блока с уведомлением а работах на сайте
+	**/
+
+	@media screen and (min-width: 1300px) and (max-width: 1552px) {
+
+		&.show-alert-update.fade.in.it,
+		&.show-alert-update.fade.in.fr {
+		    // height: 80px;
+		    height: 100px;
+		    
+		    + header {
+		        // top: 80px;
+		        top: 100px;
+		    }
+		    + header + .wrap-filters-block {
+		        // margin-top: 122px;
+		        margin-top: 142px;
+		    }
+		}
+
+	}
+
+	@media screen and (min-width: 1025px) and (max-width: 1299px) {
+
+		.warning-ico-bg + span {
+			font-size: 14px;
+		}
+
+		&.show-alert-update.fade.in.it,
+		&.show-alert-update.fade.in.fr {
+		    // height: 80px;
+		    height: 100px;
+		    
+		    + header {
+		        // top: 80px;
+		        top: 100px;
+		    }
+		    + header + .wrap-filters-block {
+		        // margin-top: 122px;
+		        margin-top: 142px;
+		    }
+		}
+
+	}
+
+	@media screen and (max-width: 1024px) {
+		.warning-ico-bg {
+			float: left;
+			margin-right: 0;
+		}
+
+		.warning-ico-bg + span {
+			.centeredVertical();
+
+			left: 54px;
+
+			display: inline-block;
+			width: 72%;
+
+			text-align: left;
+
+		}
+
+		&.show-alert-update.fade.in {
+			// height: 70px;
+			height: 90px;
+			
+			+ header {
+				// top: 70px;
+				top: 90px;
+			}
+			+ header + .wrap-filters-block {
+		        // margin-top: 112px;
+		        margin-top: 132px;
+		    }
+		}
+
+	}
+ 
+	@media screen and (max-width: 767px) {
+		&.show-alert-update.fade.in {
+			// height: 80px;
+			height: 100px;
+			
+			+ header {
+				// top: 80px;
+				top: 100px;
+			}
+
+			+ header + .wrap-filters-block + .wrap .main {
+				// margin-top: 130px;
+				margin-top: 150px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		&.show-alert-update.fade.in {
+			// height: 90px;
+			height: 110px;
+			
+			+ header {
+				// top: 90px;
+				top: 110px;
+			}
+
+			+ header + .wrap-filters-block + .wrap .main {
+				// margin-top: 140px;
+				margin-top: 160px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 479px) {
+		&.show-alert-update.fade.in { 
+			// height: 110px;
+			height: 150px;
+			
+			+ header {
+				// top: 110px;
+				top: 150px;
+			}
+
+			+ header + .wrap-filters-block + .wrap .main {
+				// margin-top: 160px;
+				margin-top: 200px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 374px) {
+		&.show-alert-update.fade.in {
+			// height: 120px;
+			height: 180px;
+			 
+			+ header {
+				// top: 120px;
+				top: 180px;
+			} 
+
+			+ header + .wrap-filters-block + .wrap .main {
+				// margin-top: 170px;
+				margin-top: 230px;
+			}
+		}
+	}
+
+	// Adjust close link position
+	.close {
+		position: relative;
+		top: -2px;
+		right: -21px;
+
+		color: #FFF;
+		text-shadow: none;
+
+		&:hover {
+			color: #FFF;
+		}  
+	}
+}
+

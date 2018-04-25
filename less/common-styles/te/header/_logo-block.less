@@ -1,0 +1,82 @@
+.logo-box { 
+	display: inline-block;  
+	position: relative;
+	@media screen and (max-width: 553px) {
+			display: block;
+	}
+
+	&:after {
+		background: @separator_block_bg;
+		content: '';
+		display: none;
+		height: 30px;
+		position: absolute;
+		right: -12px;
+		top: -6px;
+		width: 1px;
+
+		@media screen and (min-width: 768px) and (max-width: 800px) {
+			right: 0;
+		}
+
+		@media screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+
+	.toggle-menu {
+		display: none;
+		@media screen and (max-width: 767px) {
+			cursor: pointer;
+			display: inline-block;
+			left: 0;
+			position: absolute;
+			top: -6px;
+			width: 25px;
+			i {
+				color: @top_menu_text_color;
+				font-size: 30px;
+			}
+		}
+	}
+
+	.logo-img {
+		background: url(../../../../img/topMenu/hdLogo.svg?2) no-repeat; 
+		background-size: 100% auto;
+		display: inline-block;
+		height: 27px;
+		margin-right: 13px;
+		outline: 0;
+		outline-offset: 0;
+		width: 150px;
+		@media screen and (max-width: 767px) {
+			background-position: center 20%;
+			margin-left: 40px;
+			max-width: 150px;
+		}
+		@media screen and (max-width: 380px) {
+			background: url(../../../../img/TE.svg?2) no-repeat;
+			width: 52px;
+			height: 27px;
+			margin-left: 41px;
+			background-size: contain;
+			margin-top: 1px;
+		}
+	}
+
+	span.slogan-block {
+		color: @disable_state_color;
+		display: inline-block;
+		text-align: center;
+		font-family: Arial, sans-serif;
+		font-size: 13px;
+		font-variant: small-caps;
+		vertical-align: top;
+	}
+}
+
+@media screen and (max-width: 1020px) {
+	.logo-box span.slogan-block {
+		display: none;
+	}
+}

@@ -1,0 +1,596 @@
+// раппер правой части меню
+// меню пользователя
+// элементы списка (иконки)
+.list-user-menu > li:first-of-type::before {
+	content: '';
+	left: -2px;
+	position: absolute;
+	top: 9px;
+	display: block;
+	height: 25px;
+	width: 1px;
+	background-color: @separator_block_bg;
+}
+
+
+
+.list-user-menu .user-menu-item {
+	vertical-align: top;
+	padding-top: 4px;
+	padding-left: 12px;
+	padding-right: 11px;
+	position: relative;
+	@media screen and (max-width: 767px) {
+		padding-right: 6px;
+		padding-left: 6px;
+	}
+	&:last-child {
+		padding-right: 4px;
+		padding-left: 10px;
+		@media screen and (max-width: 767px) {
+			padding-right: 6px;
+			padding-left: 6px;
+		}
+	}
+	.list-inline {
+		list-style-type: none;
+	}
+	a {
+		//убрал mobile иконки
+		i.discus-added-mob,
+		i.discus-not-added-mob,
+		&.active .discus-added-mob,
+		&.active .discus-not-added-mob	{
+			display: none;
+		}
+
+		display: inline-block;
+		padding: 0;
+		color: @disable_state_color;
+		position: relative;
+		.login {
+			.reg-menu-title {
+				@media (min-width: 581px) and (max-width: 767px) {
+					color: @boulder;
+				}
+			}
+		}
+		i.idea-not-added-to-project,
+		i.order-not-added-to-project,
+		i.watch-not-added-to-project,
+		i.discus-not-added-to-project {
+			top: 0;
+			display: inline-block;
+			vertical-align: sub;
+			svg {
+				path {
+					fill: @disable_state_color;
+				}
+			}
+		}
+		i.discus-not-added-to-project {
+			svg {
+				path {
+					fill: @_link_color;
+				}
+			}
+		}
+		i.discus-not-added-to-project {
+			top: 10px;
+		}
+		span.val {
+			position: absolute;
+			right: 1px;
+			line-height: 19px;
+			top: 0px;
+			width: 18px;
+			font-size: 10px;
+			color: #fff;
+			text-align: center;
+			border-radius: 50%;
+			font-weight: 700;
+			background: transparent;
+		}
+
+		i.idea-added-to-project,
+		i.order-added-to-project,
+		i.watch-added-to-project,
+		i.discus-added-to-project {
+			display: none;
+		}
+
+		// показать подходящую свг иконку - количество больше 0
+		&.active .idea-added-to-project,
+		&.active .order-added-to-project,
+		&.active .watch-added-to-project,
+		&.active .discus-added-to-project {
+			top: 0;
+			display: inline-block;
+			vertical-align: sub;
+			svg {
+				path,
+				polygon {
+					fill: @_link_color;
+				}
+			}
+		}
+
+		&.active .idea-not-added-to-project,
+		&.active .order-not-added-to-project,
+		&.active .watch-not-added-to-project,
+		&.active .discus-not-added-to-project {
+			display: none;
+		}
+
+		&.active:hover i svg {
+			path,
+			polygon {
+				fill: @_link_hover_color;
+			}
+		}
+
+		// для неактивных пунктов (записки и напоминания)
+		&.not-ready {
+			cursor: default;
+		}
+
+		i {
+			position: relative;
+			top: 0;
+			vertical-align: text-bottom;
+		}
+
+		&.active {
+			color: @black;
+			
+			i {
+				color: @_link_color;
+			}
+
+			&:hover i {
+				color: @_link_hover_color;
+			}
+		}
+	}
+
+	&.user-menu-item-mobile {
+		display: none;
+	}
+}
+
+
+// иконка обсуждения заказа и всплывашка с чатом при первом посещении
+// @import '_first-visit-discrss.less';
+
+@media screen and (max-width: 767px) {
+	.list-inline>li {
+		display: inline-block;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+	.list-user-menu {
+		.user-menu-item a {
+			position: relative;
+
+			//убрал десктопные иконки
+			i.discus-added-to-project,
+			i.discus-not-added-to-project,
+			&.active .discus-added-to-project,
+			&.active .discus-not-added-to-project 	{
+				display: none;
+			}
+
+
+			i.discus-not-added-mob {
+				top: 10px;
+				padding-left: 6px;
+				padding-right: 11px;
+				display: inline-block;
+				vertical-align: sub;
+				svg {
+					path {
+						fill: @_link_color;
+					}
+				}
+			}
+			i.discus-added-mob {
+				display: none;
+			}
+
+			&.active .discus-added-mob {
+				top: 0;
+				display: inline-block;
+				vertical-align: sub;
+				svg {
+					path,
+					polygon {
+						fill: @_link_color;
+					}
+				}
+			}
+
+			i {
+				position: relative;
+				top: 0;
+				vertical-align: text-bottom;
+			}
+			&.active .discus-not-added-mob {
+				display: none;
+			}
+			&.active {
+				color: @black;
+				
+				i {
+					color: @_link_color;
+				}
+
+				&:hover i {
+					color: @_link_hover_color;
+				}
+			}
+			span.val {
+				position: absolute;
+				right: 1px;
+				top: 0px;
+				font-size: 12px;
+				color: #fff;
+				text-align: center;
+				border-radius: 50%;
+				font-weight: 700;
+				background: transparent;
+				width: 20px;
+				line-height: 21px;
+			}
+			// показать подходящую свг иконку - количество идей больше 0
+			&.active .idea-added-to-project {
+				top: 0;
+				display: inline-block;
+				vertical-align: sub;
+				svg {
+					path,
+					polygon {
+						fill: @_link_color;
+					}
+				}
+			}
+
+			&.active .idea-not-added-to-project {
+				display: none;
+			}
+
+			&.active:hover i svg {
+				path,
+				polygon {
+					fill: @_link_hover_color;
+				}
+			}
+			i {
+				color: @disable_state_color;
+			}
+			
+			i.watch-not-added-to-project,
+			&.active i.watch-added-to-project {
+				top: 0px;
+				svg {
+					width: 32px;
+				    height: 32px;
+					path {
+						fill: @disable_state_color;
+					}
+				}
+			}
+			&.active i.watch-added-to-project {
+				svg {
+					path {
+						fill: @_link_color;
+					}
+				}
+			}
+			i.idea-not-added-to-project,
+			&.active i.idea-added-to-project {
+				top: 0px;
+				svg {
+					width: 29px;
+				    height: 32px;
+					path {
+						fill: @disable_state_color;
+					}
+				}
+			}
+			&.active i.idea-added-to-project {
+				svg {
+					path {
+						fill: @_link_color;
+					}
+				}
+			}
+			i.order-not-added-to-project,
+			&.active i.order-added-to-project {
+				top: 0px;
+				svg {
+					width: 32px;
+				    height: 32px;
+					path {
+						fill: @disable_state_color;
+					}
+				}
+			}
+			&.active i.order-added-to-project {
+				svg {
+					path {
+						fill: @_link_color;
+					}
+				}
+			}
+		}
+	}
+
+
+	.list-user-menu li.user-menu-item.user-menu-item-mobile {
+		display: inline-block;
+		padding-left: 0;
+	}
+  
+	li.setting-item.user-menu-item  .navbar-toggle-reg {
+		padding-left: 0px;
+		padding-top: 6px;
+		margin-left: 5px;
+		i {
+			font-size: 26px;
+			color: @top_menu_text_color;
+		}
+		@media screen and (max-width:420px) {
+			padding-left: 5px;
+		}
+	}
+
+	// поле ввода текста для поиска (для мобильных устройств)
+	li.search-site-item.user-menu-item  {
+		position: relative;
+		display: inline-block;
+		margin: 0; 
+		padding: 0 !important;
+		line-height: 1;
+	}
+}
+@media (min-width: 581px) and (max-width: 767px) {
+	.list-user-menu {
+		.user-menu-item a {
+
+			color: @boulder;
+		}
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.list-user-menu li.user-menu-item.user-menu-item-mobile.setting-item {
+		display: none;
+	}
+}
+
+// @media screen and (max-width: 380px) {
+// 	li.user-menu-item  {
+// 		padding-left: 2px;
+// 		padding-right: 2px;
+// 	}
+// }
+
+// выпадающий список с кнопками логина или профилем пользователя (появляется при клике на иконку профиля)
+header .dropdown-user-menu {
+	position: absolute; 
+	right: -65px;
+	top: 30px;
+	z-index: 51;
+	@media (min-width: 581px) and (max-width: 767px) {
+		width: 100%;
+		min-width: 125px;
+		right: -37px;
+	}
+}
+header .menuRegMobile {
+
+	.hovered-triangle();
+
+	position: relative;
+	list-style: outside none none;
+	margin-top: 12px;
+	max-height: 134px;
+	background: @white none repeat scroll 0 0;
+	border: 1px solid @common_border_color;
+	box-shadow: 0 0 5px @common_border_color;
+	text-align: left;
+	// для мобильных сдвинуть немного треугольник над всплывашкой
+	@media (min-width: 581px) and (max-width: 767px) {
+		padding: 5px 15px;
+	}
+    &::before {
+    	right: 39%;
+    }
+
+    &::after {
+    	right: 32%;
+    }
+
+	li {
+		border-bottom: 1px solid @common_border_color;
+		min-width: 190px;
+		@media (min-width: 581px) and (max-width: 767px) {
+			min-width: 100%;
+			display: block;
+			padding: 8px 0 7px;
+			color: @boulder;
+			border: none;
+		}
+		&:last-child{
+			border: none;
+		}
+
+		a {
+			display: inline-block;
+			width: 100%;
+			color: @top_menu_text_color;
+			padding: 10px 15px ;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	} 
+
+	.location-item {
+		display: none;
+
+		@media screen and (max-width: 553px) {
+			display: block;   
+		}
+
+		.tab-title {
+			height: 20px;
+			padding: 0;
+		}
+
+		.tab-title .title-name {
+			padding-bottom: 0;
+			vertical-align: bottom;
+		}
+
+		.flag {
+			margin-right: 8px;
+		}
+
+		// .flag.rest-world {
+		// 	display: inline-block;
+
+		//     height: 16px;
+		// 	margin-right: 5px;
+		//     width: 16px;
+
+		//     background: url(/img/rest-world.svg) no-repeat;
+		//     background-size: 100%;
+		// 	vertical-align: sub;
+		// }
+	}
+}
+
+.flag.rest-world {
+	display: inline-block;
+
+	height: 16px;
+	margin-right: 5px;
+	width: 16px;
+
+	background: url(../../../../img/rest-world.svg) no-repeat;
+	background-size: 100%;
+	vertical-align: sub;
+}
+
+// стили для корректной работы скрипта по сворачиванию пунктов меню под иконку троеточия, если меню не помещается по ширине
+.left-part  .menu { 
+	position: relative;
+ 
+	// display: none;
+	visibility: hidden;
+	
+	margin-left: 15px;
+
+	&:after {
+		content: '';
+
+		position: absolute;
+		right: -7px;  
+		top: 7px;
+
+		display: none;
+		height: 30px;
+		width: 1px;
+
+		background: @separator_block_bg;
+	}
+
+	li.more-opt {
+		color: @top_menu_text_color;
+	}
+
+	li a {
+		color: @top_menu_text_color;
+		font-size: 13px;  
+
+		> [class^=sprite-] {
+			display: none;
+
+			@media screen and (max-width: 767px) {
+				display: inline-block;
+			}
+		}
+
+	}
+
+	.more-items {
+	    position: absolute;
+	    right: 0%;
+	    top: 33px;
+	    z-index: 51;
+	
+		display: none;
+
+	    background: @white none repeat scroll 0 0;
+	    border: 1px solid @common_border_color;
+	    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+	    list-style: outside none none;
+		text-align: left;
+		
+		// only for react
+		&.hide-toggle {
+			display: inline-block;
+			// height: 0;
+		}
+	}
+
+
+	.more-items li {
+		// for react only
+		// display: none;
+		&.hide {
+			visibility: hidden;
+		}
+		width: 170px;
+
+		border-bottom: 1px solid @common_border_color;
+
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		a {
+			display: inline-block;
+			padding: 8px 10px;
+			width: 100%;
+
+			font-weight: 400;
+		}
+	}
+}
+
+@media screen and (max-width: 1020px) {
+	.left-part .menu {
+		margin-left: 5px;
+	}
+}
+
+@media screen and (max-width: 1305px) {
+	.left-part .menu li {
+		vertical-align: top;
+	}
+}
+
+
+@media screen and (max-width: 1305px) {
+	.left-part .menu li.more-opt {
+		position: relative;
+		top: -2px;
+
+		i {
+			cursor: pointer;
+		}
+	}
+}

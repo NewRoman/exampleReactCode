@@ -1,0 +1,635 @@
+@imgPaths: '../../../img';
+
+.main {
+    margin-top: 20px;
+
+    @media screen and (max-width: 767px) {
+        margin-top: 55px;
+    } 
+}
+
+// появляется при показе попапов с настройками локации и ссылками профиля в хедере
+.layout-background {
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	margin: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: 2700;
+}
+
+// появляется при первом входе на сайт
+.overlay-bg {
+	pointer-events: none;
+	position: fixed;
+	top: -120%;
+	transition-duration: 700ms;
+	transition-property: background-color;
+	z-index: -1;
+}
+
+.overlay-bg.active {
+	background-color: rgba(255,255,255,.6);
+	bottom: 0;
+	left: 0;
+	pointer-events: all;
+	right: 0;
+	top: 0;
+	z-index: 905;
+}
+
+// Заголовок с табами
+.tabs-titles {
+    border-bottom: 2px solid #e2e2e2;
+    margin: 20px 0;
+
+    .t-t-item {
+        color: #6890c5;
+        cursor: pointer;
+        display: inline-block;
+        padding: 10px 15px;
+
+        &.active {
+            color: #333;
+            cursor: default;
+            font-weight: 700;
+            position: relative;
+
+            &::after {
+                background: #000;
+                bottom: -2px;
+                content: '';
+                height: 2px;
+                left: 0;
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+    	display: none;
+    }
+}
+
+.t-t-item-mobile {
+	cursor: pointer;
+	display: none;
+	font-size: 18px;
+	margin-bottom: 20px;
+
+	&.no-margin {
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+
+	.material-icons {
+		float: right;
+		font-size: 28px;
+		left: 5px;
+		position: relative;
+		transition: transform .1s linear;
+	}
+
+	&.active {
+		.material-icons {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+	}
+}
+
+// Содержимое таба внизу страницы (отзывы, комментарии, блоги)
+.tab-block-content {
+	display: none;
+	margin: 30px 15px 45px;
+
+	&.shown {
+		display: block;
+	}
+
+	@media screen and (max-width: 767px) {
+		border-bottom: 1px solid #d8d8d8;
+		display: block;
+		margin: 20px 5px;
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+	}
+}
+
+.mobile-hidden-content {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+// блок необходим для корректного написания скрипта для показа блока boxInformer
+// на мобильных экранах
+.set-z-index {
+    display: none;
+    position: absolute;
+	z-index: 7;
+	
+	@media screen and (min-width: 1367px) and (max-width: 1600px) {
+        z-index: 6;
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1366px) {
+        z-index: 8;
+    } 
+    
+    @media  screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1024px) and (max-width: 1024px),
+           screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1366px) and (max-width: 1366px) {
+        z-index: 12;
+    }
+
+    @media screen and (max-width: 1024px) {
+        z-index: 5;
+    } 
+
+    @media screen and (max-width: 767px) {  
+        z-index: 4;  
+    }
+
+    @media screen and  (max-width: 480px) {
+        z-index: 3;
+    }
+}
+
+// @todo следует этот код вынести в отдельный файл стилей и подключать его в common-style.less 
+.up-button {
+	background: @white;
+	border: solid 1px lighten(@_text-color, 50%);
+	box-sizing: border-box;
+	-webkit-box-shadow: 2px 4px 8px 0 rgba(128,128,128,.36);
+	-moz-box-shadow: 2px 4px 8px 0 rgba(128,128,128,.36);
+	box-shadow: 2px 4px 8px 0 rgba(128,128,128,.36);
+	bottom: 20px;
+	cursor: pointer;
+	display: none;
+	height: 30px;
+	position: fixed;
+	right: 30px;
+	width: 50px;
+	z-index: 56;   
+
+	@media screen and (max-width: 767px) {
+		bottom: 97px;
+		right: 15px;
+		z-index: 60;
+	}  
+}
+
+.up-button {
+	// bottom: 120px !important;
+
+	@media screen and (max-width: 768px) {
+		bottom: 88px !important; 
+	}
+}  
+
+.up-button:before {
+  background: url('@{imgPaths}/up-button.png?2') 0 0 no-repeat;
+  content: '';
+  display: block;
+  height: 12px;
+  margin: 8px auto;
+  width: 20px;
+}
+
+.up-button:hover {
+  border-color: @_link_color;
+  -webkit-box-shadow: 2px 4px 8px 0 rgba(67,135,251,.36);
+  -moz-box-shadow: 2px 4px 8px 0 rgba(67,135,251,.36);
+  box-shadow: 2px 4px 8px 0 rgba(67,135,251,.36);
+}
+
+.up-button:hover:before {
+	background: url('@{imgPaths}/up-button-hover.png?2') 0 0 no-repeat;
+}
+
+.swipe-area-menu-open {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 51;
+
+	display: none;
+	height: 100%;
+	width: 30px;
+
+	// background: red; 
+	
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+// необходимо, чтобы свайп для открывания меню не отрабатывал при свайпе на каруселях
+.jcarousel,
+#block_reviews > .owl-carousel, // карусель траст пайлот на главной
+.interiors-list-block .owl-carousel { // карусель интерьеров на стр колекции
+	position: relative;
+	z-index: 55;
+}
+
+.both {
+	clear: both;
+}
+
+// отдельно поставить анимацию на контент со списками фильтров на странице фильтров, чтобы на мобильных он сдвигался при открывании бокового меню
+.wrap-filters-block-page {
+	.transition(left 0.5s);
+
+	position: relative;
+	left: 0;
+
+	+ .wrap {
+		display: none;
+	}
+}
+
+.wrap {
+    .transition(left 0.5s);
+
+    left: 0;
+	padding: 0 0 @bot_padd_wrap 0;
+	// padding-bottom: 80px;
+	margin: auto;
+	position: relative;
+
+	@media screen and (max-width: @media_bot_padd_wrap) {
+		padding-bottom: @bot_padd_wrap_mob;
+	}
+}
+
+// запретить скролл основного контента страницы при открывании меню с фильтрами на мобильных устройствах
+.wrap-content.no-scroll {
+	.main {
+		margin-top: 10px;  
+	}
+
+	.wrap,
+	.wrap-filters-block-page { // .wrap-filters-block-page контент, который следует сдвигать вправо при открывании бокового меню на мобильных
+        position: fixed;
+        left: 280px;
+        z-index: 555;
+
+        overflow: hidden;
+        margin-top: 47px; 
+        width: 100%;
+
+        background: @white;
+	}
+
+	// чтобы на странице фильтров не сдвигался конент вниз при открывании бокового меню
+	.wrap-filters-block-page {
+		margin-top: 42px;
+	}
+
+    & + .wrap-footer {
+        display: none;
+    }
+}
+
+.line {
+	background-color: @separator_block_bg;
+	clear: both;
+	display: block;
+	height: 1px;
+	margin: 5px 0;
+}
+
+.smallTimer {
+	background-image: url('@{imgPaths}/smallTimer.gif');
+	display: inline-block;
+	height: 16px;
+	margin: 5px auto;
+	width: 16px;
+}
+
+#layout {
+	&:extend(.layout-background);
+	display: block;
+
+	.main-box {
+		height: 100%;
+		margin: 0;
+		overflow-y: scroll;
+		padding: 0;
+		position: relative;
+		width: 100%;
+	}
+}
+
+.body-content {
+	min-height: 372px;
+	background: @white;
+}
+
+// кнопка возврата ко всем результатам со стрелкой (например All blogs)
+.all-result-page {
+    float: left;
+    padding: 0 10px 0 15px;
+    position: relative;
+  
+    //стрелка влево
+    &::after, 
+    &::before {
+        .rotate(45deg);
+
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 5px;
+        height: 10px;
+        width: 10px; 
+        background: @_link_color;
+    }
+
+    &::after {
+        background: @white; 
+        left: 5px;
+    }
+
+    &:visited {
+        color: @_link_color;
+	}
+	
+	@media screen and (max-width: 767px) {
+		z-index: 55;
+	}
+}
+
+.niceSelector {
+	//background: url(@{imgPaths}/selectBox/lang_arrow.png?2) no-repeat; // лишнее свойство?
+	background: @white;
+	background-position: 61px;
+	border: 1px solid @common_border_color;
+	cursor: pointer;
+	color: lighten(@_text-color, 50%);
+	font-size: 12px;
+	height: 34px;
+	margin-top: -1px;
+	-moz-appearance: none;
+	padding: 0 20px 0 5px;
+	width: 100% !important; 
+}
+
+.status.available, .status.away{
+	background-position: 0 -19px;
+}
+
+.status.available_pda, .status.away_pda {
+	background-position: 0 -38px;
+}
+
+.status.xa {
+	background-position: 0 -76px;
+}
+
+.status.xa_pda {
+	background-position: 0 -57px;
+}
+
+#loadingSearch {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: @white;
+	display: none;
+	height: 30px;
+	margin: 25px auto;
+	position: relative;
+	width: 80px;
+
+	&.layout {
+		&:extend(.layout-background);
+		border-radius: 0;
+	}
+}
+
+// @todo следует этот код вынестb в отдельный файл стилей и подключать его в common-style.less
+.social-icons-list {
+	min-height: 0;
+	// margin-bottom: 30px;
+
+	text-align: center;
+
+	.pics {
+		display: inline-block;
+		height: 39px;
+		line-height: 39px;  
+		margin-bottom: 10px;
+	}
+
+	a {
+		display: inline-block;
+		margin-right: 2%;
+		padding: 0 10px;
+		height: 42px;
+
+		border: 1px transparent solid;
+
+		&:hover {
+			border: 1px #cddef5 solid;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		color: lighten(@_text-color, 30%);
+		text-align: center;
+		text-decoration: none;
+
+		.num {
+			display: inline-block;
+			height: 27px;
+			line-height: 27px;
+			padding-left: 2px;
+			vertical-align: middle;
+			width: 34px;
+
+			background: url('@{imgPaths}/home/social-counter.png?2');
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+
+			font-size: 12px;
+		}
+
+		.img {
+			display: inline-block;
+			margin-right: 3px;
+			height: 28px;
+			width: 28px;
+			vertical-align: middle;
+
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+
+		}
+
+
+		&.fb .img {
+			background-image: url('@{imgPaths}/home/social-fb.png?2');
+
+			.num {
+				margin-left: -5px;
+			}
+		}
+
+		&.vk .img {
+			background-image: url('@{imgPaths}/home/social-vk.png?2');
+		}
+
+		&.ok .img {
+			background-image: url('@{imgPaths}/home/social-ok.png?2');
+		}
+
+		&.lj .img {
+			background-image: url('@{imgPaths}/home/social-lj.png?2');
+		}
+
+		&.tw .img {
+			background-image: url('@{imgPaths}/home/social-tw.png?2');
+		}
+
+		&.pn .img {
+			background-image: url('@{imgPaths}/home/social-pin.png?2');
+		}
+
+		&.in .img{
+			background-image: url('@{imgPaths}/home/social-inst.png?2');
+		}
+
+		&:nth-child(3) ~ a {
+			margin-bottom: 0;
+		}
+
+		&:hover {
+			span {
+				color: lighten(@_text-color, 30%);
+			}
+		}
+
+		&:active .img {
+			opacity: .5;
+		}
+	}
+
+	@media screen and (max-width: 767px) {
+		margin-bottom: 10px;
+	}
+}
+
+// эффект расширения с проявлением картинки
+.expans {
+    animation-name: expansion;
+    -webkit-animation-name: expansion;
+    -moz-animation-name: expansion;
+
+    animation-duration: 0.9s;
+    -webkit-animation-duration: 0.9s;
+    -moz-animation-duration: 0.9s;
+
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+
+    visibility: visible !important;
+}
+
+@keyframes expansion {
+    0% {
+        transform: scale(0.75);
+        opacity: 0.0; 
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1; 
+    }
+}
+
+@-webkit-keyframes expansion {
+    0% {
+        -webkit-transform: scale(0.75);
+        opacity: 0.0; 
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1; 
+    }
+}
+
+@-moz-keyframes expansion {
+    0% {
+        -moz-transform: scale(0.75);
+        opacity: 0.0;
+    }
+    100% {
+        -moz-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// эффект расширения с проявлением картинки
+.centered {
+    .translate(@x: -50%; @y: -50%);
+
+    height: auto;
+    width: auto;
+    top: 50% !important;
+    left: 50% !important;  
+}
+ 
+// блок под сокращенным меню фильтров (на некоторых страницах может и не быть)
+.header-main-content {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+label {
+    &.checkbox-custom-label {
+        span {
+            &.checbox-custom-checbox{
+                background: url('@{imgPaths}/leftMenu/checkbox.jpg?2') -83px 0 no-repeat rgba(0,0,0,0);
+                height: 17px;
+                width: 17px;
+                left: -2px;
+                top: -2px;
+                position: absolute;
+                transform: translate(0,33%);
+            }
+        }
+
+        input {
+            &:checked + span.checbox-custom-checbox {
+                background-position: -83px -108px;
+            }
+        }
+        
+        position: relative;
+        display: inline-block;
+        margin: 0;
+        width: 100%;
+        //font-weight: 400!important;
+    }
+}

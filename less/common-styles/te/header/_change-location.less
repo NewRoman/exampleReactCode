@@ -1,0 +1,101 @@
+// блок с настройками местоположения
+.simple-list-drop-container .simple-list-drop li[role="show-all-items"] {
+    color: @_link_color;
+    cursor: pointer;
+    padding: 6px 20px 8px 15px;
+}
+
+.simple-list-drop-container [role="show-list-drop"] .flag.flag-en {
+    top: 10px;
+}
+ 
+.simple-list-drop-container [role="show-list-drop"] .flag.flag-en,
+.simple-list-drop-container .simple-list-drop .simple-list-item:not(.divider) .flag.flag-en {
+    background: url('../../../../img/rest-world.svg') no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    height: 17px;
+    width: 17px; 
+    vertical-align: text-top;
+}
+
+.change-location {
+    padding-top: 15px;
+
+    
+
+    .header-location {
+        display: block;
+        margin: 0 auto;
+        padding: 0 15px;
+        
+        .span {
+            width: 100%;
+        }
+
+        &.first-visit {
+            display: none;
+        }
+    }
+
+    .edit-form {
+        margin-bottom: 20px;
+        padding: 0 15px;
+
+        .field {
+            margin-top: 15px;
+
+            &:first-child {
+                margin-top: 5px;
+            }
+
+            label {
+                color: @Gray33;
+                font-size: 13px;
+                font-weight: 400;
+                margin-bottom: 0;
+                padding: 0;
+            }
+        }
+    }
+
+    .button-panel {
+        background-color: @bg_color_block;
+        box-sizing: border-box;
+        height: 49px;
+        padding: 0 15px;
+        width: 100%;
+        
+        button {
+            background-color: @bg_color_block;
+            border: 1px solid @common_border_color;
+            box-sizing: border-box;
+            height: 30px;
+            margin-top: 8px;
+            text-align: center;
+            width: 49%;
+
+            &.save,
+            &.cancel {
+                display: block;
+                float: left;
+
+                &:hover {
+                    background-color: @_link_hover_color;
+                    color: @white;
+                    cursor: pointer;
+                }
+            }
+
+            &.save {
+                background-color: @_link_color;
+                color: @white;
+                border: none;
+            }
+
+            &.cancel {
+                float: right;
+            }
+        }
+    }
+}

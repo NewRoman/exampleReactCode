@@ -1,0 +1,63 @@
+
+@btstrPath: '../../../../bower_components/bootstrap/less';
+@customizeBtstrPath: 'custom-components';
+
+
+@import url('variables.less'); 
+@import url('mixins.less');  
+
+// Reset and dependencies
+@import "@{btstrPath}/normalize.less";
+// @import "@{btstrPath}/print.less";
+// @import "@{btstrPath}/glyphicons.less";  
+
+// Core CSS
+@import "@{btstrPath}/scaffolding.less";
+@import "@{btstrPath}/type.less";
+// @import "@{btstrPath}/code.less";
+@import "@{btstrPath}/grid.less";
+@import "@{btstrPath}/tables.less";
+// @import "@{btstrPath}/forms.less";
+@import "@{btstrPath}/buttons.less";
+
+// Components
+@import "@{btstrPath}/component-animations.less";
+
+@import "@{btstrPath}/dropdowns.less";
+@import "@{customizeBtstrPath}/dropdowns.less";
+// @import "@{btstrPath}/button-groups.less";
+// @import "@{btstrPath}/input-groups.less";
+// @import "@{btstrPath}/navs.less";
+// @import "@{btstrPath}/navbar.less";  
+// @import "@{btstrPath}/breadcrumbs.less";
+// @import "@{btstrPath}/pagination.less";
+// @import "@{btstrPath}/pager.less";
+// @import "@{btstrPath}/labels.less";
+// @import "@{btstrPath}/badges.less";
+// @import "@{btstrPath}/jumbotron.less";
+// @import "@{btstrPath}/thumbnails.less";
+
+// вначале подключаем стандартные стили бутстрапа, а потом переопределяем их из @{customizeBtstrPath}
+@import "@{btstrPath}/alerts.less";
+@import "@{customizeBtstrPath}/alerts.less";
+
+// @import "@{btstrPath}/progress-bars.less";
+// @import "@{btstrPath}/media.less";
+// @import "@{btstrPath}/list-group.less";
+// @import "@{btstrPath}/panels.less";
+// @import "@{btstrPath}/responsive-embed.less";
+// @import "@{btstrPath}/wells.less";     
+  
+@import "@{btstrPath}/close.less";
+@import "@{customizeBtstrPath}/close.less";
+
+// Components w/ JavaScript
+// @import "@{btstrPath}/modals.less";
+// @import "@{btstrPath}/tooltip.less";
+// @import "@{btstrPath}/popovers.less";
+// @import "@{btstrPath}/carousel.less"; 
+
+// Utility classes
+@import "@{btstrPath}/utilities.less";
+@import "@{btstrPath}/responsive-utilities.less";
+

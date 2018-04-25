@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+// // настройки для сайта (значения, разные для каждого сайта, задаем через переменные)
+@import '../../settings/te-settings.less';
+ 
+// @import '../../sprite_1.less';
+@import '../../bootstrap-options/te/mixins.less';
+
+// кастомные миксины, используемые в проекте
+@import '../../settings/_mixins.less';  
+
+// кастомная настройка стилизации jquery-ui (чтобы не грузить неиспользуемые стили)
+@import '../../jquery-ui-custom/jquery-ui-custom.less'; 
+   
+ 
+@import '_fonts.less';
+@import '_base.less';
+@import '_main.less';      
+@import '_flags.less';
+@import './header/header.less';
+@import 'footer.less';
+@import '../../filters-block/te-left.less';
+@import '_common-gi-select.less';
+
+@import '_jquery.confirm.less';
+
+@import '_profile-tooltip.less';
+
+@import '_share-buttons.less';
+@import '_tooltips.less';
+
+@import '_common-ideas.less';
+
+// выдает ошибку компиляции
+// @import '_comments.less';
+
+@import '_search-sphinx.less';
+
+@import '_jquery.toastmessage.less';
+
+@import '_cookie_alert.less';
+
+// // стили для tab-simple
+@import '_simple-tab.less';
+
+// // стили для выпадающих списков в блоке с настройками локализации
+@import '_simple-list-drop.less'; 
+
+// // стили блока с кнопками для работы с проектами (напр переименование, удаление проектов заказов/идей)
+@import '_edit-panel.less';
+  
+// // сообщение о нулевом результате (напр страница списка проектов идей, заказов и др.)
+@import '_empty-msg-block.less';
+
+// // попапы со списками проектов (при добавлении интерьера или артикула в проекты, если проектов больше одного)
+@import '_popup-project-list.less';

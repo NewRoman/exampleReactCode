@@ -1,0 +1,219 @@
+// блок с данными пользователя user profile
+.login-locale-block { 
+	display: inline-block;
+	float: right;
+	margin-top: 3px;
+	margin-right: 11px;
+	position: relative;
+
+	.tab-title {
+		// стрелка вниз
+		&:after {
+            content: '';
+            position: absolute;
+            right: 7px;
+            top: 42%;
+
+            border: 4px solid transparent;
+            border-top: 4px solid @top_menu_text_color;
+            display: block;
+		}
+
+		&.wrap-user-name {
+			.user-icon {
+				display: none;
+			}
+
+			// показать иконку профиля вместо надписи
+			@media screen and (max-width: 1249px) {
+				.name-alias {
+					display: none;
+				}
+
+				.user-icon {
+					display: inline-block;
+				}
+			}
+
+			@media screen and (max-width: 767px) {
+				display: none;
+			}
+		}
+
+		.title-name {
+			.flag {
+				position: relative;  
+				top: 1px;
+
+				display: inline-block;
+				margin-right: 10px;
+			}
+
+			.flag.rest-world {
+				// display: inline-block;
+
+			    // height: 16px;
+				// margin-right: 5px;
+				vertical-align: text-top;
+			    // width: 16px;
+
+			    // background: url(/img/rest-world.svg) no-repeat;
+			    // background-size: 100%;
+			}
+		}
+
+		@media screen and (min-width: 1250px) and (max-width: 1340px) {
+			.title-name {
+				max-width: 115px;
+			} 
+		}
+
+		@media screen and (min-width: 768px) and (max-width: 1249px) {
+			.title-name {
+				max-width: 98px;
+			}
+		}
+
+		@media screen and (min-width: 554px) {
+			&.wrap-title-change-location .title-name {
+				max-width: 112px;
+			} 
+		}
+
+		@media screen and (max-width: 767px) {
+			&.wrap-title-change-location:before {
+				display: none; 
+			}
+		} 
+
+		// вертикальная линия-разделитель при добавлении класса active
+		&.wrap-title-change-location:before {
+			content: '';
+
+			left: 0;
+			position: absolute;
+			top: 5px;
+
+			height: 25px;
+			width: 1px;
+
+			background-color: @separator_block_bg;
+		}
+	}
+
+	.tab-block {
+
+		// ссылки на профиль пользователя, логаут
+		// ссылки на регистрацию, авторизацию, или на профиль пользователя
+		&.wrap-profile-block {
+			min-width: 125px;
+		}
+
+		&.wrap-profile-block .wrap-login-links {
+			padding: 5px 15px;
+
+			a {
+				display: block;
+				padding: 8px 0 7px; 
+			
+				color: @top_menu_text_color;
+
+				&:visited {
+					color: @top_menu_text_color;
+				}
+			}
+		}
+
+		// блок, который увеличивает высоту tab-block, чтобы не скрывался таб после выбора страны или языка, если список слишком длинный
+		&.wrap-change-location.active .pseudo-height {
+			left: 0;
+			position: absolute;
+			top: 100%;
+
+			height: 100px;
+			opacity: 0;
+			width: 100%;
+		}
+
+		// треугольник вверху всплывашки (есть только если таб активируется при ховере)
+		// класс .hovered-tab добавляется скриптом в _simple-tab.js
+		&.hovered-tab {
+			.hovered-triangle();
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		margin-left: 0;
+	}
+
+	@media screen and (max-width: 580px) {
+
+		height: 0px;
+		margin: 0;
+		width: 100%;
+
+		&.mobile {
+			position: fixed;
+			top: 43px;
+			left: 0;
+			right: 0;
+
+			.tab-block.hovered-tab {
+				&::after,
+				&::before {
+					display: none;
+				}
+			}
+
+			.tab-block.wrap-change-location.active {
+				.translate(@x:-50%;@y:0);
+
+				left: 50%!important;
+
+				width: 238px;
+			}
+		}
+
+		.tab-title {
+			display: none;
+		}
+
+		// для мобильных изменить позиционирование, заданное через плагин _simple-tab.js
+		.tab-block.wrap-change-location.active {
+			left: auto!important;
+		    right: 0;
+			top: 0;
+			z-index: 999;
+			
+			// для мобильных сдвинуть немного треугольник над всплывашкой
+		    &.hovered-tab::before {
+				right: 35%;
+		    }
+
+		    &.hovered-tab::after {
+				right: 32%;
+		    }
+		}
+	}
+
+	@media screen and (max-width: 380px) {
+		.tab-block.wrap-change-location.active {
+
+		    // для мобильных сдвинуть немного треугольник над всплывашкой
+		    // &.hovered-tab::before {
+		    // 	right: 28%;
+		    // }
+
+		    // &.hovered-tab::after {
+				// right: 25%;
+		    // }
+		}
+	}
+}
+
+// для локали fr - на планшетах с шириной 768пкс не видно ни одного пункта меню, поэтому надо увеличить ширину блока section с меню
+.right-part.fr-menu .login-locale-block .tab-title .title-name  {
+	@media screen and (min-width: 768px) and (max-width: 1020px) {
+		max-width: 98px;
+	}	
+}

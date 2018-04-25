@@ -1,0 +1,131 @@
+@zindex-simple-tab: 59;
+// выпадающие блоки в хедере
+@import '_popups-in-header.less';
+// лого    
+@import '_logo-block.less';
+// блок с табами (логин и установки локализации)
+@import 'login-locale-block.less';
+// меню в правой части хедера
+@import '_top-user-menu.less';
+// блок с настройками местоположения
+@import '_change-location.less';
+
+// для мобильных хедер прячеться при прокрутке поэтому тут можно изменить позиционирование
+// чтобы на iOS > 9 при свайпе вниз экран не разрывался оставляя фиксиоровано спозиционированый хедер вверху а остальную часть страницы  опуская вниз
+@media screen and (max-width: 1024px) {
+
+	header {
+		position: absolute;
+	}
+}  
+// при открывании бокового меню необходимо зафиксировать боковое меню чтобы верстка не ломалась
+@media screen and (max-width: 767px) {
+	.no-scroll header {
+		position: fixed!important;
+	}
+}
+
+header {
+	.transition(left 0.5s);
+	.transition(top 0.2s ease-in-out); // при скролле вниз скрывать хедер, а при скролле вверх показыать
+
+	background-color: @white;
+	border-bottom: 1px @common_border_color solid;
+	left: 0;
+	position: fixed;
+	top: 0;
+	z-index: 58;
+	width: 100%;
+    
+	// класс добавляется скриптом в _main.js -> App.headerScrollTransition при скролле страницы вниз
+	&.nav-up {
+		top: -45px;
+	}
+
+	// класс для перезаписи скрытия меню для просмотровиков
+	&.top-visible.slider-open {
+		top: 0;
+	}
+
+	section.left-part {
+		float: left;
+		height: 42px;
+		padding-top: 13px;
+		padding-left: 10px;
+
+		width: 57%;  
+
+		// для англ локали слишком длинный слоган, поэтому надо стилизовать хедер по-другому
+		@media screen and (min-width: 1020px) and (max-width: 1200px) {
+			&.en-slogan {
+				width: 59%;
+			}
+		}
+
+		@media screen and (min-width: 1130px) and (max-width: 1249px) {
+			width: 60%;
+		}
+
+		@media screen and (min-width: 1021px) and (max-width: 1129px) {
+			width: 56%;
+		}
+
+		@media screen and (min-width: 768px) and (max-width: 1020px) {
+			width: 41%;
+		}
+
+		// для локали fr - на планшетах с шириной 768пкс не видно ни одного пункта меню, поэтому надо увеличить ширину блока section с меню
+		&.fr-menu {
+			@media screen and (min-width: 768px) and (max-width: 1020px) {
+				width: 44%;
+			}	
+		}
+
+		@media screen and (max-width: 767px) {
+			width: 30%;
+		} 
+	}
+
+	section.right-part { 
+		float: right;
+		height: 42px;
+		padding-right: 10px;
+		width: 43%;
+
+		// для англ локали слишком длинный слоган, поэтому надо стилизовать хедер по-другому
+		@media screen and (min-width: 1020px) and (max-width: 1200px) {
+			&.en-slogan {
+				width: 41%;
+			}
+		}
+
+		@media screen and (min-width: 1130px) and (max-width: 1249px) {
+			width: 40%;
+		}
+
+		@media screen and (min-width: 1021px) and (max-width: 1029px) {
+			width: 44%;
+		}
+
+		@media screen and (min-width: 768px) and (max-width: 1020px) {
+			width: 59%;
+		} 
+
+		// для локали fr - на планшетах с шириной 768пкс не видно ни одного пункта меню, поэтому надо увеличить ширину блока section с меню
+		&.fr-menu {
+			@media screen and (min-width: 768px) and (max-width: 1020px) {
+				width: 56%;
+			}	
+		}
+
+		@media screen and (max-width: 767px) {
+			width: 70%;
+		} 
+	}
+}
+
+
+// анимированное свойство при открывании бокового меню с фильтрами на мобильных экранах
+.wrap-content.no-scroll header.top-menu {
+	left: 280px;
+}

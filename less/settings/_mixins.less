@@ -1,0 +1,43 @@
+// миксин для вертикального выравнивания по центру
+.centeredVertical {
+    .translate(@x: 0; @y: -52%); 
+ 
+    position: absolute;    
+    top: 50%;
+}
+
+
+// mixin треугольник вверху всплывашки
+.hovered-triangle {
+	box-shadow: 0 0 5px @common_border_color; 
+	&::before {
+		.rotate(45deg);
+
+		content: '';
+		z-index: 1; 
+		
+		position: absolute;
+		top: -7px;
+
+		right: 48%;
+		
+		height: 15px;
+		width: 15px;
+		border: 1px @common_border_color solid; 
+		box-shadow: 0px 0px 5px @common_border_color; 
+		background: @white;
+	}
+	&::after {
+		content: '';
+
+		position: absolute;
+		right: 45%; 
+		top: 0px;
+		z-index: 1;
+
+		height: 13px;
+		width: 32px; 
+
+		background: @white;
+	}
+}

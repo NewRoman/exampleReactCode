@@ -1,0 +1,529 @@
+// выпадающие блоки в хедере
+.popup-block {
+    position: absolute;     
+    right: 0;
+    top: 41px;
+    z-index: 50;   
+    display: none;
+    padding: 0 15px 15px 15px;
+    width: 370px;
+    background: @white;
+    border: 1px solid @common_border_color;
+    box-shadow: 0 0 5px @common_border_color;
+    cursor: default;
+
+    // показать выпадающие списки при наведении на иконки в хедере
+	@media screen and (min-width: 1025px) {
+        &:not(.alert-order-block) {
+            .transition(opacity 400ms); 
+            top: -99999px;
+            display: table;
+            opacity: 0;
+        }
+
+		&.active:not(.alert-order-block) {
+			opacity: 1;
+			top: 41px;
+        }
+	}
+
+    &:before {
+        .rotate(135deg);
+        content: '';
+        position: absolute; 
+        right: 23px;
+        top: -6px; 
+        z-index: -1;
+        display: block;
+        height: 15px;
+        width: 15px;
+        background: @white;
+        border: 1px solid @common_border_color;
+        box-shadow: 0 0 5px 0 lighten(@common_border_color, 10%);
+    }
+    
+    &:after {
+        .rotate(90deg);
+        content: '';
+        position: absolute;
+        right: 23px;
+        top: -4px;
+        z-index: -1;
+        display: block;
+        height: 24px;
+        width: 15px;
+        background: @white;
+        border: none;
+        box-shadow: none;
+    }
+    &.order-block:before,
+    &.order-block:after {
+        right: 19px;
+    }
+
+    // показать подсказку чата при наведению на иконку 
+    // данная подсказка появляеться в виде попапа а не через плагин tooltip
+    &.order-discus-block {
+        left: auto;
+        right: -12px;
+        
+        padding-top: 10px;
+        width: auto;
+        
+        text-align: center;
+        white-space: nowrap;
+
+    }
+
+    &-last-visits.popup-block {
+        width: 380px;
+
+        .block-watch-content.scrolled {
+            width: 363px;
+        }
+    }
+
+    .spinner {
+        top: 78% !important;
+    }
+
+    // класс добавляется скриптом, если элементы выпадающего списка не помещаются в отведенный для них блок
+    .scrolled {
+        overflow-y: scroll;
+        width: 343px;
+    }
+
+    h5 {
+        position: relative;
+        z-index: 99;
+
+        margin: 0 0 12px;
+        padding: 12px 0 10px;
+
+        background: @white;
+        border-bottom: 1px @common_border_color solid;
+
+        color: @_text-color;
+        font-weight: 300;
+
+        a {
+            color: @_text-color;
+        }
+
+        .title {
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+    }
+
+    ul > li.popup-item {  
+        position: relative;
+        list-style: none;
+        padding: 8px 4px;
+
+        border-bottom: 1px @common_border_color solid;
+
+        &:hover { 
+            background: @bg_color_block;    
+        } 
+
+        a:hover {
+            cursor: pointer;
+        }
+
+        img {
+            max-height: 100px;
+            max-width: 100%;
+            width: auto;
+        }
+    }
+
+    // элементы списка с последними просмотренными страницами
+    li.last-visits {
+        border-bottom: none;
+        margin-bottom: 12px;
+        padding: 0;
+
+        .box-img {
+            position: relative;
+
+            display: inline-block;  
+            height: 40px;
+            margin-right: 8px;
+            width: 60px;
+            
+            text-align: center;
+
+            &.no-img {
+                background: url('../../../../img/topMenu/page-icon.jpg') center center no-repeat ;
+            }
+
+            img {
+                .translate(@x:-50%;@y:-50%);
+
+                left: 50%; 
+                position: absolute;
+                top: 50%;
+
+                min-height: 5px;
+            }
+        }
+
+        a {
+            .centeredVertical();
+            .text-overflow();
+
+            display: inline-block;
+            width: 170px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        span {
+            .centeredVertical();
+            right: 0;
+            margin-right: 0;
+            padding-left: 5px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 105px;
+        }
+    }
+
+    // элементы списка с проектами идей
+    li.idea-list-item {
+        &:first-child {
+            padding-top: 0;
+        }
+
+        .idea-box-img {
+            position: relative;
+
+            display: inline-block;
+            margin-right: 8px;
+            min-height: 57px;
+            vertical-align: middle;
+            width: 90px;
+
+            text-align: center;
+
+            span {
+                .centeredVertical();
+                .translate(@x:-50%;@y:-50%);
+
+                left: 50%;
+
+                font-size: 12px;
+                text-transform: uppercase;
+            }
+        }
+
+        .idea-item-info {
+            display: inline-block;
+            vertical-align: middle;
+            width: 200px;
+
+            div {
+                font-size: 12px;
+            }
+
+            &.top-vertical-align {
+                vertical-align: top;
+            }
+        }
+    }
+
+    li {
+        // стили для блока переименования заказа
+        .project-name[data-actions-panel] .actions-panel-box {
+            left: 66%;
+            position: absolute;
+            top: 0;
+
+            display: block;
+
+            ul li.edit {
+                margin-left: 0;
+            }
+
+            .edit-panel {
+                left: -4px;
+                top: 4px;
+
+                width: 338px;
+
+                input.edit-input {
+                    width: 160px;
+                }
+
+                .edit-btn-block>span.cancel {
+                    width: 77px;
+                }
+
+                .edit-btn-block>span.save  {
+                    width: 75px;
+                }
+            }
+        }
+
+        .project-name[data-actions-panel] .actions-panel-box.active {
+            position: static;
+
+            ul {
+                display: none;
+            }
+        }
+
+    }
+
+    li.idea-list-item {
+        .project-name[data-actions-panel] .actions-panel-box {
+            left: 90%;
+        }
+
+        .project-name[data-actions-panel] .actions-panel-box.active .edit-panel {
+            left: -105px !important;
+        }
+    }
+
+    // элементы списка с заказами
+    li.order-list-item {
+        div {
+            font-size: 12px; 
+        }
+
+        b {
+            font-weight: 400;
+        }
+
+        > span {
+            .centeredVertical();
+
+            right: 0px;
+
+            display: inline-block;
+            max-width: 106px;
+            padding: 3px 5px;
+
+            color: lighten(@_text-color, 30%);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;   
+            width: 66%;
+
+            .question-mark {
+                display: none;
+            }
+        }
+
+        .red {
+            color: #f00000;
+        }
+
+        // для немецкой локали поправить верстку, чтобы карандаш не налазил на статус заказа
+        &.deLocaleClass .project-name[data-actions-panel] a {
+            width: 60%;
+        }
+
+        &.deLocaleClass .project-name[data-actions-panel] .actions-panel-box {
+            left: 60%; 
+        }
+    }
+
+    // для только что добавленного заказа применить анимацию, чтобы выделить его серым цветом
+    @-webkit-keyframes just_added {
+        from {background-color: @white;}
+        to {background-color: @common_border_color;}
+    }
+
+    @keyframes just_added {
+        0%   {background-color: @white;}
+        20%  {background-color: @common_border_color;}
+        100% {background-color: @white;}
+    } 
+
+    li.just-added {  
+        -webkit-animation-name: just_added;
+        -webkit-animation-duration: 8s;
+        animation-name: just_added;
+        animation-duration: 8s;
+        background-color: @white;
+    }
+
+    // кнопка для добавления заказа в выпадающем списке заказов
+    .add-btn-block {
+        display: none;
+
+        .add-project-btn {  
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 10px;
+
+            background-color: @_link_color;
+
+            color: @white;
+
+            &:hover {
+                cursor: pointer;
+            }
+        } 
+    }
+    
+}
+// сообщение для незалогиненного пользователя в хедере при добавлении артикула в заказ
+ul li .alert-order-block {
+    padding: 0 0 10px 30px;
+
+    //временно
+    // &.tmp-idea {
+    //     right: 50px;
+    // }
+    
+    .alert-top-image {
+         left: 10px;
+         position: absolute;
+         top: 10px;
+
+         height: 28px;
+         width: 24px;
+         
+         background: rgba(0,0,0,0) url('../../../../img/topMenu/alert-signed.png?2') no-repeat scroll center center;
+    }
+
+    .alert-text {
+        position: relative;
+        z-index: 99;
+
+        padding: 10px 15px 0 0;
+
+        background: @white;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .cls-alert-btn {
+        position: absolute;
+        right: 3px;
+        top: 2px;
+        z-index: 101;
+
+        i {
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) { 
+    ul li .alert-order-block {
+        width: 250px;
+
+        &:after {
+            right: 11px;
+        }
+
+        .alert-text {
+            padding: 10px 25px 0 0;
+        }
+
+        .cls-alert-btn i {
+            font-size: 20px;
+        }
+    }
+}
+
+// сообщение с иконкой появляется после добавления артикула в заказ и интерьера в идеи
+[data-idea-add-block],
+[data-order-add-block] {
+    display: none;
+    
+    .icon-idea,
+    .icon-order {
+        background-color: @_link_color;
+    }
+
+    div.sprite-idea-added,
+    div.sprite-order-added {
+        display: block;
+        margin: 0 auto;
+    }
+
+    div.sprite-idea-added {
+        // .sprite(@sprite-idea-added);
+        background: url('../../../../img/topMenu/idea-added.png') center center no-repeat ;
+        width: 22px;
+        height: 33px;
+     }
+    
+    div.sprite-order-added {
+    //     .sprite(@sprite-order-added);
+        background: url('../../../../img/topMenu/order-added.png') center center no-repeat ;
+        width: 30px;
+        height: 31px;
+    }
+
+    &.deleted div.sprite-idea-added {
+    //     .sprite(@sprite-idea-deleted);
+        background: url('../../../../img/topMenu/idea-deleted.png') center center no-repeat ;
+        width: 26px;
+        height: 31px;
+    }
+
+    &.deleted div.sprite-order-added {
+    //     .sprite(@sprite-order-deleted);
+        background: url('../../../../img/topMenu/order-deleted.png') center center no-repeat ;
+        width: 26px;
+        height: 31px;
+    }
+
+    .txt-idea,
+    .icon-idea, 
+    .txt-order,
+    .icon-order {
+        position: absolute;
+        right: 0;
+        top: 5px;
+        z-index: 200;
+
+        color: @white;
+        font-size: 18px; 
+        padding: 5px 0;
+        width: 50px;
+    }
+
+    .txt-idea,
+    .txt-order {
+        right: 0;
+        top: 46px;
+
+        padding: 5px 35px;
+        width: 200px;
+
+        background: @_link_color;
+
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+// если хедер спрятан врезультате скрола страницы то сместить иконку и текст немного ниже
+header.nav-up {
+    .txt-idea,
+    .icon-idea, 
+    .txt-order,
+    .icon-order {
+        top: 41px;
+    }
+
+    .txt-idea,
+    .txt-order {
+        top: 82px;
+    }
+}
